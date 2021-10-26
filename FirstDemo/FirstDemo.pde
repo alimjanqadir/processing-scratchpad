@@ -1,5 +1,3 @@
-import java.util.stream.IntStream;
-
 void setup() {
   size(640, 360);
 }
