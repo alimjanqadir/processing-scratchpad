@@ -1,19 +1,28 @@
-int x = 0;
-int speed = 3;
+int circleSize = 100;
+int circleStrokeWeight = 4;
+int velocity = 3;
+int originalPosition = circleSize / 2 + circleStrokeWeight / 2;
+int x = originalPosition;
+
 void setup() {
-   size(300, 300); 
+   size(400, 400); 
 }
 
 void draw() {
   background(0);
   stroke(255);
-  strokeWeight(4);
+  strokeWeight(circleStrokeWeight);
   noFill();
-  circle(x, height/2, 100);
-  if(x > width) {
-    speed = -speed;
-  } else if(x < 0){
-    speed = -speed;
+	
+  var endEdge = width - (circleSize / 2) - (circleStrokeWeight / 2); 		
+  var startEdge = 0 + (circleSize / 2) + (circleStrokeWeight / 2); 		
+  x += velocity;
+  if(x > endEdge) {
+	velocity = -velocity;
+	x = endEdge;
+  } else if(x < startEdge){
+    velocity = -velocity;
+	x = originalPosition;
   }
-  x += speed;
+  circle(x, height/2, circleSize);
 }
